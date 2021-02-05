@@ -25,6 +25,13 @@
         "prettier"
     ],
     "rules": {
+      "import/no-extraneous-dependencies": [
+        "error", {
+          "devDependencies": false,
+          "optionalDependencies": false,
+          "peerDependencies": false
+        }
+      ],
       "prettier/prettier": "error",
       "react/jsx-one-expression-per-pine": "off",
       "react/jsx-props-no-spreading": "off",
