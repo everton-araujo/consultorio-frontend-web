@@ -22,6 +22,7 @@ interface SignUpFormData {
   name: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
 }
 
 const SignUp: React.FC = () => {
@@ -40,6 +41,10 @@ const SignUp: React.FC = () => {
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
           password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+          passwordConfirmation: Yup.string().oneOf(
+            [Yup.ref('password')],
+            'Senhas não coincidem',
+          ),
         });
 
         await schema.validate(data, {
@@ -92,6 +97,12 @@ const SignUp: React.FC = () => {
               icon={FiLock}
               type="password"
               placeholder="Senha"
+            />
+            <Input
+              name="passwordConfirmation"
+              icon={FiLock}
+              type="password"
+              placeholder="Confirmar Senha"
             />
 
             <Button type="submit">Cadastrar</Button>
